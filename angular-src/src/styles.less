@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+// @import '~metro4/build/css/metro-all.min.css';
+@import '../src/cdns-local/w3.css';
+@import '../src/cdns-local/w3-colors-2021.css';
+@import '../src/cdns-local/w3-colors-2018.css';
+@import '../src/cdns-local/font-awesome-4.7.0/css/font-awesome.min.css';
+
+/* didact-gothic-regular - latin_greek_cyrillic */
+@font-face {
+  font-family: 'Didact Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('../src/cdns-local/Fonts/didact-gothic-v14-latin_greek_cyrillic-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../src/cdns-local/Fonts/didact-gothic-v14-latin_greek_cyrillic-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html, body {
+    margin: @margin-zero;
+}
+
+html,body,h1,h2,h3,h4,h5 {font-family: 'Didact Gothic', sans-serif;}
+
+
+// CUSTOM GLOBAL SCROLLBAR
+/* width */
+::-webkit-scrollbar {
+    height: @thin-scroll;
+    width: @thin-scroll;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: @global-scroll-bg-color;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: @global-scroll-thumb-color;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: @global-scroll-thumb-hover-color;
+  }
+
+  // GLOBAL VARIABLES FOR LESS
+  @head-height: 43px;
+
+  //sidebar
+  @big-sidebar: 255px;
+  @thin-sidebar: 48px;
+
+  // global colors
+  @active-link: #009fdb;
+
+  // main margins
+  @margin-zero: 0;
+
+  // all scrollbars
+  @thin-scroll: 3px;
+
+  @global-scroll-bg-color: #f1f1f1;
+  @global-scroll-thumb-color: #888;
+  @global-scroll-thumb-hover-color: #555;
+
+  // main paddings
+  @main-container-padding: 12px;
+
+  // main message colors - both fill and text
+  @pass-color: mediumspringgreen;
+  @warn-color: #fecd63;
+  @false-color: #FF6363;
+
+  // == test bg colors == //
+  @father-bg-color: rgba(255, 0, 0, 0.18);
