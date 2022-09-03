@@ -1,0 +1,13 @@
+1) upload all build files except for angular-src & node-modules of server
+
+	a) build with ng build --prod (change links automatically from env.file)
+
+	b) change the mail link in user-routes for email sending to                 https://observe.litcons.eu/ + endpoint
+
+2)npm install or npm ci in cloud server for app
+
+3) (install bcrypt???)
+
+4) change node_modules/passport-jwt/lib/auth-header.js with the local file
+
+5) restart application with pm2

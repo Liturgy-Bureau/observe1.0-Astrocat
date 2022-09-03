@@ -1,0 +1,27 @@
+{
+  "name": "mean-authentication",
+  "version": "1.0.0",
+  "description": "mean stack authentication app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "googleapis": "^97.0.0",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.17",
+    "passport": "*",
+    "passport-jwt": "*",
+    "sharp": "^0.29.1",
+    "socket.io": "^4.2.0"
+  },
+  "author": "cowboy cleric",
+  "license": "MIT"
+}
