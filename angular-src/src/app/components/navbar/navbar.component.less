@@ -1,0 +1,37 @@
+@import "../../../styles.less";
+
+.mySidebar {
+    height: calc(100% - @head-height);
+    width: @big-sidebar;
+}
+.myThinSidebar {
+    height: calc(100% - @head-height);
+    width: @thin-sidebar;
+}
+
+.stick-down {
+    position: fixed;
+    bottom: 0;
+    width: inherit;
+}
+
+.myOverlay {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(96, 96, 136, 0.63);
+    z-index: 1;
+}
+
+.active {
+    color:@active-link;;
+}
+
+.a-disabled{
+    pointer-events: none;
+    cursor: default;
+    color: rgba(128, 128, 128, 0.548);
+}
+

@@ -1,0 +1,227 @@
+<!-- !REGISTER CONTENT! -->
+<h5><i class="fa fa-registered"></i> registration area</h5>
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="upper-row">
+  <div
+    fxLayout="column"
+    fxFlex="10%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="upper-one"
+  >
+    <!-- i am one -->
+  </div>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxFlex="60%"
+    fxFlex.xs="100%"
+    class="upper-two"
+  >
+    <header class="w3-container" style="padding-top: 22px">
+      <h5><i class="fa fa-registered fa-2x"></i>&nbsp;&nbsp;please complete</h5>
+    </header>
+    <hr style="width: 42%" />
+    <!-- THE FORM GROUP TO HANDLE -->
+    <form
+      [formGroup]="registerForm"
+      class="w3-container"
+      (ngSubmit)="inscribeRegistration(registerForm.value)"
+    >
+      <!-- FULLNAME PASSWORD INPUT WITH ITS ERRORS -->
+      <label class="w3-text-sand">full name</label>&nbsp;&nbsp;
+      <!-- IF ERRORS -->
+      <a
+        *ngIf="
+          fullname.hasError('required') && (fullname.dirty || fullname.touched)
+        "
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be
+          empty</small
+        ></a
+      >
+      <a
+        *ngIf="
+          fullname.hasError('pattern') && (fullname.dirty || fullname.touched)
+        "
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;Name Surname ex.
+          <i>'Space Cowboy'</i></small
+        ></a
+      >
+      <input class="w3-input" formControlName="fullname" type="text" />
+
+      <!-- EMAIL INPUT WITH ITS ERRORS -->
+      <label class="w3-text-sand">email</label>&nbsp;&nbsp;
+      <!-- IF ERRORS -->
+      <a
+        *ngIf="email.hasError('required') && (email.dirty || email.touched)"
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be
+          empty</small
+        ></a
+      >
+      <a
+        *ngIf="email.hasError('email') && (email.dirty || email.touched)"
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;should be valid ex.
+          <i>tomcat@space.out</i></small
+        ></a
+      >
+      <input class="w3-input" formControlName="email" type="email" />
+
+      <!-- PASSWORD INPUT WITH ITS ERRORS -->
+      <label class="w3-text-sand">password</label>&nbsp;&nbsp;
+      <!-- IF ERRORS -->
+      <a
+        *ngIf="
+          password.hasError('required') && (password.dirty || password.touched)
+        "
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be
+          empty</small
+        ></a
+      >
+      <a
+        *ngIf="
+          password.hasError('minlength') && (password.dirty || password.touched)
+        "
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;must be six
+          characters or more</small
+        ></a
+      >
+      <input class="w3-input" formControlName="password" type="password" />
+
+      <!-- CONFIRM PASSWORD INPUT WITH ITS ERRORS -->
+      <label class="w3-text-sand">confirm password</label>&nbsp;&nbsp;
+      <!-- IF ERRORS -->
+      <a
+        *ngIf="
+          confirmpwd.hasError('required') &&
+          (confirmpwd.dirty || confirmpwd.touched)
+        "
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be
+          empty</small
+        ></a
+      >
+      <a
+        *ngIf="
+          confirmpwd.hasError('compare') &&
+          !confirmpwd.hasError('required') &&
+          (confirmpwd.dirty || confirmpwd.touched)
+        "
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;password
+          mismatch!</small
+        ></a
+      >
+      <input class="w3-input" formControlName="confirmpwd" type="password" />
+
+      <!-- PHONE INPUT WITH ITS ERRORS -->
+      <label class="w3-text-sand">phone</label>&nbsp;<label class="pass"
+        >optional</label
+      >&nbsp;&nbsp;
+      <!-- IF ERRORS -->
+      <a
+        *ngIf="phone.hasError('pattern') && (phone.dirty || phone.touched)"
+        class="invalid"
+        ><small
+          ><i class="fa fa-exclamation-triangle"></i>&nbsp;only numbers ex.
+          <i>3336363699</i></small
+        ></a
+      >
+      <br />
+      <input
+        class="w3-input"
+        style="width: inherit"
+        formControlName="phone"
+        type="tel"
+        ng2TelInput
+        [ng2TelInputOptions]="{
+          preferredCountries: ['us', 'gb', 'gr']
+        }"
+        (intlTelInputObject)="telInputObject($event)"
+        (countryChange)="onCountryChange($event)"
+      />
+      <br />
+      <br />
+      <!-- INSCRIBE INPUT -->
+      <button
+        type="submit"
+        [disabled]="!registerForm.valid || !checked"
+        class="w3-button w3-ripple w3-blue w3-round-large"
+      >
+        inscribe</button
+      >&nbsp;&nbsp;&nbsp;
+      <input
+        class="w3-check"
+        (change)="toggleEditable($event)"
+        type="checkbox"
+      />
+      <label
+        >&nbsp;&nbsp;I'm OK with
+        <a [routerLink]="['/terms']">Terms & Conditions</a></label
+      >
+    </form>
+  </div>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxFlex="30%"
+    fxHide.xs
+    class="upper-three"
+  >
+    <!-- i am three -->
+  </div>
+</div>
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="mid-row">
+  <div
+    fxLayout="column"
+    fxFlex="10%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="mid-one"
+  >
+    <!-- i am four -->
+  </div>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxFlex="60%"
+    fxFlex.xs="100%"
+    class="mid-two"
+  >
+    <p>
+      &bull;&nbsp;please complete & submit this simple form to register for an
+      account or ...<br />
+      <br />
+      <b>no, thanks!...</b>
+      I just want to <a href="#">have a look out of curiosity</a><br />
+      <label class="pass">- in a sandbox, demonstration environment -</label>
+      <br />
+      <br />
+      <i class="fa fa-asterisk"></i>&nbsp;&nbsp;upon successful login you can
+      update your data state in the profile section
+    </p>
+  </div>
+  <div
+    fxLayout="column"
+    fxFlex="30%"
+    fxLayoutAlign="center center"
+    fxFlex.xs="100%"
+    class="mid-three"
+  >
+    <a target="_blank" href="http://litcons.eu"
+      ><img src="../../../assets/pictures/logo-med.png"
+    /></a>
+  </div>
+</div>

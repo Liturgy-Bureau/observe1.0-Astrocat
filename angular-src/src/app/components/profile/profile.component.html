@@ -1,0 +1,394 @@
+<!-- !PROFILE CONTENT! -->
+<h5><i class="fa fa-id-badge"></i> profile</h5>
+<!-- UPPER ROW SECTION-->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="upper-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="upper-one"
+  ></div>
+
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="upper-two"
+  >
+    <div class="w3-card-2 w3-cell-row" style="min-height: 100%">
+      <div class="w3-container w3-cell w3-mobile">
+        <br />
+        <div class="w3-row">
+          <img
+            src="{{avatar}}"
+            id="avat"
+            (click)="avatarUploadInput.click()"
+            alt="Avatar"
+            title="change picture"
+            style="min-width: 90px; max-width: 90px; aspect-ratio: 1/1"
+            class="w3-circle w3-border w3-third w3-left"
+          />
+          <button
+            type="submit"
+            (click)="avatarUploadInput.click()"
+            class="
+              w3-button
+              w3-padding-small
+              w3-ripple
+              w3-round-large
+              w3-left
+              w3-tiny
+            "
+          >
+            <i class="fa fa-pencil" title="change picture"></i>
+          </button>
+          <button
+            type="submit"
+            class="
+              w3-button
+              w3-padding-small
+              w3-ripple
+              w3-round-large
+              w3-right
+              w3-tiny
+            "
+          >
+            <i class="fa fa-print" title="print entire profile"></i
+            >&nbsp;&nbsp;print
+          </button>
+          <input
+            type="file"
+            accept="image/*"
+            class="w3-right w3-tiny avatar-input"
+            (change)="onFileSelected($event)"
+            #avatarUploadInput
+          />
+        </div>
+        <div class="w3-row w3-border-bottom">
+          <p *ngIf="currentUserProfile" class="w3-left">
+            <b>{{ currentUserProfile.fullname }}</b>
+          </p>
+          <p
+            *ngIf="currentUserProfile"
+            class="w3-right"
+            [ngClass]="{
+              member: getRank() === 'Member',
+              mod: getRank() === 'Moderator',
+              admin: getRank() === 'Admin'
+            }"
+          >
+            <strong>{{ getRank() }}</strong>
+          </p>
+        </div>
+        <p *ngIf="currentUserProfile" class="labels">
+          email:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.email }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          last login:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{
+            currentUserProfile.userstatistics.lastlogindate | date: "short"
+          }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          member since:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{
+            currentUserProfile.userstatistics.initialregistrationdate
+              | date: "short"
+          }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          company:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.company }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          title:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.title }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          address:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.address }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          phone:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.phone }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          country:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.country }}</a>
+        </p>
+        <div class="w3-row w3-border-top">
+          <br />
+          <div class="w3-bar">
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-left
+                w3-tiny
+                w3-margin-bottom
+              "
+            >
+              <i class="fa fa-pencil" title="edit profile"></i>&nbsp;&nbsp;edit
+            </button>
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-left
+                w3-tiny
+                w3-margin-left
+              "
+            >
+              <i class="fa fa-floppy-o" title="save changes"></i
+              >&nbsp;&nbsp;save
+            </button>
+            <button
+              *ngIf="currentUserProfile"
+              type="submit"
+              [routerLink]="['/manager']"
+              class="w3-button
+              w3-padding-small
+              w3-ripple
+              w3-round-large
+              w3-left
+              w3-tiny
+              w3-margin-left
+              admin-lock"
+              [ngClass]="{
+                membernotshow: getRank() === 'Member',
+                modlock: getRank() === 'Moderator',
+                adminlock: getRank() === 'Admin'
+              }"
+            >
+              <i class="fa fa-lock" title="manage application"></i
+              >&nbsp;&nbsp;manage
+            </button>
+            <button
+              (click)="createModal()"
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-right
+                w3-tiny
+              "
+            >
+              <i class="fa fa-trash-o" title="delete profile"></i
+              >&nbsp;&nbsp;delete
+            </button>
+          </div>
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="43%"
+    fxFlex.xs="100%"
+    class="upper-three"
+  >
+    <div class="w3-card-2 w3-cell-row" style="min-height: 100%">
+      <div class="w3-container w3-cell w3-mobile">
+        <div class="w3-row w3-border-bottom">
+          <p class="w3-left"><b>billing info</b></p>
+          <p
+            class="w3-right"
+            *ngIf="currentUserProfile"
+            [ngClass]="{
+              excelbil: getBillingStatus() === 'Excellent',
+              warnbil: getBillingStatus() === 'Warnings',
+              badbil: getBillingStatus() === 'Critical'
+            }"
+          >
+            {{ getBillingStatus() }}
+          </p>
+        </div>
+        <p *ngIf="currentUserProfile" class="labels">
+          my plan:&nbsp;&nbsp;&nbsp; <a class="infos">monthly billing</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          plan expires:&nbsp;&nbsp;&nbsp; <a class="infos">never</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          last renewal:&nbsp;&nbsp;&nbsp; <a class="infos">never</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          payment via:&nbsp;&nbsp;&nbsp; <a class="infos">credit card</a>
+        </p>
+        <div class="w3-row w3-border-top">
+          <br />
+          <div class="w3-bar">
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-left
+                w3-tiny
+                w3-margin-bottom
+              "
+            >
+              <i class="fa fa-pencil" title="edit profile"></i>&nbsp;&nbsp;
+            </button>
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-left
+                w3-tiny
+                w3-margin-left
+              "
+            >
+              <i class="fa fa-floppy-o" title="save changes"></i>&nbsp;&nbsp;
+            </button>
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-right
+                w3-tiny
+              "
+            >
+              <i class="fa fa-trash-o" title="delete profile"></i>&nbsp;&nbsp;
+            </button>
+          </div>
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+</div>
+<!-- SECOND ROW SECTION -->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="mid-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="mid-one"
+  ></div>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="mid-two"
+  >
+    <div class="w3-card-2 w3-cell-row">
+      <div class="w3-container w3-cell w3-mobile">
+        <div class="w3-row w3-border-bottom">
+          <p class="w3-left"><b>objects info</b></p>
+          <p
+            class="w3-right"
+            *ngIf="currentUserProfile"
+            [ngClass]="{
+              excelobj: getObjectsStatus() === 'Excellent',
+              warnobj: getObjectsStatus() === 'Warnings',
+              badobj: getObjectsStatus() === 'Critical'
+            }"
+          >
+            {{ getObjectsStatus() }}
+          </p>
+        </div>
+        <p *ngIf="currentUserProfile" class="labels">
+          email:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{ currentUserProfile.email }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          last login:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{
+            currentUserProfile.userstatistics.lastlogindate | date: "short"
+          }}</a>
+        </p>
+        <p *ngIf="currentUserProfile" class="labels">
+          member since:&nbsp;&nbsp;&nbsp;
+          <a class="infos">{{
+            currentUserProfile.userstatistics.initialregistrationdate
+              | date: "short"
+          }}</a>
+        </p>
+        <div class="w3-row w3-border-top">
+          <br />
+          <div class="w3-bar">
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-left
+                w3-tiny
+                w3-margin-bottom
+              "
+            >
+              <i class="fa fa-pencil" title="edit profile"></i>&nbsp;&nbsp;
+            </button>
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-left
+                w3-tiny
+                w3-margin-left
+              "
+            >
+              <i class="fa fa-floppy-o" title="save changes"></i>&nbsp;&nbsp;
+            </button>
+            <button
+              type="submit"
+              class="
+                w3-button
+                w3-padding-small
+                w3-ripple
+                w3-round-large
+                w3-right
+                w3-tiny
+              "
+            >
+              <i class="fa fa-trash-o" title="delete profile"></i>&nbsp;&nbsp;
+            </button>
+          </div>
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+  <div
+    fxLayout="column"
+    fxFlex="43%"
+    fxLayoutAlign="center center"
+    fxFlex.xs="100%"
+    class="mid-three"
+  >
+    <a target="_blank" href="http://litcons.eu"
+      ><img src="../../../assets/pictures/logo-med.png"
+    /></a>
+  </div>
+</div>
+
+<div #modal></div>

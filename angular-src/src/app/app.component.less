@@ -1,0 +1,25 @@
+@import "../styles.less";
+
+@isMaximized: true;
+
+.container {
+    height: calc(auto - @head-height);
+    min-height: calc(100vh - @head-height);
+    margin-left: @big-sidebar;
+    margin-top: @head-height;
+    margin-bottom: @margin-zero;
+    padding: @main-container-padding;
+    // test bg
+    // background-color: @father-bg-color;
+}
+
+.container-expanded {
+    height: calc(auto - @head-height);
+    min-height: calc(100vh - @head-height);
+    margin-left: @thin-sidebar;
+    margin-top: @head-height;
+    padding: @main-container-padding;
+    margin-bottom: @margin-zero;
+    // test bg
+    // background-color: @father-bg-color;
+}

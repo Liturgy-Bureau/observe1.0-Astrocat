@@ -1,0 +1,181 @@
+<!-- !PROFILE CONTENT! -->
+<h5><i class="fa fa-wrench"></i> manage application</h5>
+<!-- UPPER ROW SECTION-->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="upper-row">
+  <div
+    fxLayout="column"
+    fxFlex="15%"
+    fxLayoutAlign="center center"
+    fxFlex.xs = "100%"
+    class="upper-one"
+  >
+    <div class="w3-card-2 w3-cell-row" style="min-height: 100%">
+      <div class="w3-container w3-cell w3-mobile">
+        <span><h6>active users > &nbsp;&nbsp;&nbsp;{{ activesno }}</h6></span>
+      </div>
+
+    </div>
+
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="42%"
+    fxFlex.xs="100%"
+    class="upper-two"
+  >
+    <div class="w3-card-2 w3-cell-row">
+      <div class="w3-container w3-cell w3-mobile" >
+        <span><h6>online</h6></span>
+        <div class="w3-container" style="min-height: 27vh; max-height: 27vh; margin-bottom: 0.5vh; overflow-y: auto;">
+          <ul class="w3-ul w3-tiny" style="width: 100%;">
+            <li *ngFor="let olUser of olUsers | keyvalue; let i=index;"
+                class="w3-bar w3-hover-blue"
+                style="align-items: center;">
+              <img *ngIf="olUsers[i]['avatar']; else elseBlock" src="{{ olUsers[i]['avatar'] }}" class="w3-bar-item w3-circle" style="width:54px">
+              <ng-template #elseBlock><img #elseBlock src="../../../assets/pictures/incognito.png" class="w3-bar-item w3-circle" style="width:54px"></ng-template>
+              <div class="w3-bar-item">
+                <span [ngSwitch]="olUsers[i]['role']" class="w3-small">
+                  <i *ngSwitchCase="'admin'" class="fa fa-star admin" aria-hidden="true"></i>
+                  <i *ngSwitchCase="'moderator'" class="fa fa-star mod" aria-hidden="true"></i>
+                  <i *ngSwitchDefault class="fa fa-star member" aria-hidden="true"></i>
+                </span>&nbsp;&nbsp;&nbsp;
+                <span class="w3-medium">{{ olUsers[i]['name'] }}</span>
+                <i *ngIf="!down || showMore!==i"
+                  (click)="toggleMore(i)"
+                   class="fa
+                   fa-arrow-circle-right
+                   fa-sm
+                   w3-bar-item
+                   w3-ripple
+                   w3-right
+                   w3-tiny
+                   more" aria-hidden="true" title="more"></i>
+                   <i
+                   *ngIf="down && showMore===i"
+                   (click)="toggleMore(i)"
+                   class="fa
+                   fa-arrow-circle-down
+                   fa-sm
+                   w3-bar-item
+                   w3-ripple
+                   w3-right
+                   w3-tiny
+                   more" aria-hidden="true" title="more"></i>
+              </div>
+
+                <div *ngIf="showMore===i && down" class="w3-bar">
+                  <button (click)="createModal()" class="w3-button w3-bar-item w3-ripple w3-round-large w3-right w3-tiny" title="start chat with...">
+                    <i class="fa fa-bolt fa-xs" aria-hidden="true"></i></button>
+                <button class="w3-button w3-bar-item w3-ripple w3-round-large w3-right w3-tiny" title="elevate user rank">
+                  <i class="fa fa-level-up fa-xs" aria-hidden="true"></i></button>
+                <button class="w3-button w3-bar-item w3-ripple w3-round-large w3-right w3-tiny" title="block user for X period">
+                  <i class="fa fa-ban fa-xs" aria-hidden="true"></i></button>
+                <button class="w3-button w3-bar-item w3-ripple w3-round-large w3-right w3-tiny" title="Delete user!">
+                  <i class="fa fa-trash-o fa-xs" aria-hidden="true"></i></button>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="28%"
+    fxFlex.xs="100%"
+    class="upper-three"
+  >
+    <div class="w3-card-2 w3-cell-row" style="min-height: 100%">
+      <div class="w3-container w3-cell w3-mobile">
+
+
+      </div>
+
+    </div>
+  </div>
+  <!---->
+</div> <!-- END UPPER ROW MAIN DIV -->
+<!-- SECOND ROW SECTION -->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="mid-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="mid-one"
+  ></div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="mid-two"
+  >
+    <div class="w3-card-2 w3-cell-row">
+      <div class="w3-container w3-cell w3-mobile">
+
+
+
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxFlex="43%"
+    fxLayoutAlign="center center"
+    fxFlex.xs="100%"
+    class="mid-three"
+  >
+
+  </div>
+  <!---->
+</div><!-- END MID ROW MAIN DIV -->
+<!-- THIRD ROW SECTION -->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="low-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="low-one"
+  ></div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="low-two"
+  >
+    <div class="w3-card-2 w3-cell-row">
+      <div class="w3-container w3-cell w3-mobile">
+
+
+
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxFlex="43%"
+    fxLayoutAlign="center center"
+    fxFlex.xs="100%"
+    class="low-three"
+  >
+    <a target="_blank" href="http://litcons.eu"
+      ><img src="../../../assets/pictures/logo-med.png"
+    /></a>
+  </div>
+  <!---->
+</div><!-- END THIRD ROW MAIN DIV -->
+
+<div #modal></div>
+

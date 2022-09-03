@@ -1,0 +1,43 @@
+<!-- !FORGOT PASSWORD - EMAIL ENTRY CONTENT! -->
+<h5><i class="fa fa-grav"></i> nice dive there ...</h5>
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="upper-row">
+    <div fxLayout="column" fxFlex="10%" fxLayoutAlign="center center" fxHide.xs class="upper-one">
+      <!-- i am one -->
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60%" fxFlex.xs="100%" class="upper-two">
+      <header class="w3-container" style="padding-top:22px">
+        <h5><i class="fa fa-grav fa-2x"></i>&nbsp;&nbsp;regain password</h5>
+      </header>
+      <hr style="width: 42%;">
+      <form [formGroup]="forgotpwdForm" class="w3-container" (ngSubmit)="issueLink(forgotpwdForm.value)">
+
+        <label>email</label>&nbsp;&nbsp;
+        <!-- IF ERRORS -->
+        <a *ngIf="email.hasError('required') && (email.dirty || email.touched)" class="invalid"><small><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be empty</small></a>
+        <a *ngIf="email.hasError('email') && (email.dirty || email.touched)" class="invalid"><small><i class="fa fa-exclamation-triangle"></i>&nbsp;should be valid email</small></a>
+        <input class="w3-input" formControlName="email" type="email">
+
+        <br>
+        <button type="submit" [disabled]="!forgotpwdForm.valid" class="w3-button w3-ripple w3-blue w3-round-large">issue link</button>
+      </form>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%" fxHide.xs class="upper-three">
+      <!-- i am three -->
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="mid-row">
+    <div fxLayout="column" fxFlex="10%" fxLayoutAlign="center center" fxHide.xs class="mid-one">
+      <!-- i am four -->
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60%" fxFlex.xs="100%" class="mid-two">
+      <p>&bull;&nbsp;&nbsp;just enter the email you have registered with<br>
+        &bull;&nbsp;&nbsp;we will send you a link in your inbox<br>
+        &bull;&nbsp;&nbsp;after you visit the link you can reset your password<br>
+        <br>
+         <i class="fa fa-exclamation"></i>&nbsp;&nbsp;it is a good practice to change your password regularly
+      </p>
+    </div>
+    <div fxLayout="column" fxFlex="30%" fxLayoutAlign="center center" fxFlex.xs="100%" class="mid-three">
+      <a target="_blank" href="http://litcons.eu"><img src="../../../assets/pictures/logo-med.png"></a>
+    </div>
+  </div>

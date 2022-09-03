@@ -1,0 +1,51 @@
+<!-- !LOGIN CONTENT! -->
+  <h5><i class="fa fa-sign-in"></i> login area</h5>
+  <div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="upper-row">
+    <div fxLayout="column" fxFlex="10%" fxLayoutAlign="center center" fxHide.xs class="upper-one">
+      <!-- i am one -->
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60%" fxFlex.xs="100%" class="upper-two">
+      <header class="w3-container" style="padding-top:22px">
+        <h5><i class="fa fa-sign-in fa-2x"></i>&nbsp;&nbsp;account credentials</h5>
+      </header>
+      <hr style="width: 42%;">
+      <form [formGroup]="loginForm" class="w3-container" (ngSubmit)="login(loginForm.value)">
+
+        <label class="w3-text-sand">email</label>&nbsp;&nbsp;
+        <!-- IF ERRORS -->
+        <a *ngIf="email.hasError('required') && (email.dirty || email.touched)" class="invalid"><small><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be empty</small></a>
+        <a *ngIf="email.hasError('email') && (email.dirty || email.touched)" class="invalid"><small><i class="fa fa-exclamation-triangle"></i>&nbsp;should be valid email</small></a>
+        <input class="w3-input" formControlName="email" type="email">
+
+        <label class="w3-text-sand">password</label>&nbsp;&nbsp;
+        <!-- IF ERRORS -->
+        <a *ngIf="password.hasError('required') && (password.dirty || password.touched)" class="invalid"><small><i class="fa fa-exclamation-triangle"></i>&nbsp;cannot be empty</small></a>
+        <input class="w3-input" formControlName="password" type="password">
+
+        <br>
+        <input type="submit" [disabled]="!loginForm.valid" class="w3-button w3-ripple w3-blue w3-round-large" value="let's go!">
+      </form>
+      <div>
+        <p>
+          have you <a [routerLink]="['/forgot']">forgot your password?</a>
+        </p>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="30%" fxHide.xs class="upper-three">
+      <!-- i am three -->
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="mid-row">
+    <div fxLayout="column" fxFlex="10%" fxLayoutAlign="center center" fxHide.xs class="mid-one">
+      <!-- i am four -->
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="60%" fxFlex.xs="100%" class="mid-two">
+      <p>please submit your credentials to enter the application<br>
+      if it's your first time here, please <a [routerLink]="['/register']">register</a><br><br>
+      <i class="fa fa-asterisk"></i>&nbsp;&nbsp;<b>if in public it is&nbsp;<span class ="w3-text-light-blue">always</span>&nbsp;advised to <span class ="w3-text-light-blue">use a private browser tab</span></b>
+      </p>
+    </div>
+    <div fxLayout="column" fxFlex="30%" fxLayoutAlign="center center" fxFlex.xs="100%" class="mid-three">
+      <a target="_blank" href="http://litcons.eu"><img src="../../../assets/pictures/logo-med.png"></a>
+    </div>
+  </div>

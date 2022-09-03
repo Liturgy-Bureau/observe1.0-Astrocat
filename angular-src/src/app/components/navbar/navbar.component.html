@@ -1,0 +1,371 @@
+<!-- Top container -->
+<div
+  class="w3-bar w3-top w3-large"
+  [ngClass]="{ 'w3-2021-inkwell': isDark, 'w3-2018-harbor-mist': !isDark }"
+  style="z-index: 4"
+>
+  <!-- ORIGINAL CSS BUTTON
+    <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" (click)="w3_open()"><i class="fa fa-bars"></i>  Menu</button>
+  -->
+  <button
+    *ngIf="currentWindowWidth < 992"
+    class="w3-bar-item w3-button w3-hover-none w3-hover-text-light-grey"
+    (click)="showOnSmallScreen = !showOnSmallScreen"
+  >
+    <i class="fa fa-bars"></i> Menu
+  </button>
+  <span class="w3-bar-item w3-left"
+    >Observe&nbsp;<small>astrocat</small>&nbsp;&nbsp;
+    <img src="../../../assets/pictures/cat-logo-smallest.png"
+  /></span>
+  <!-- <span class="w3-bar-item w3-right"><small>NOяth STār ALLianĉe</small></span> -->
+</div>
+
+<!-- Sidebar/menu -->
+<!-- ORIGINAL CSS BUTTON
+<nav #mySidebar class="w3-sidebar w3-white w3-collapse w3-animate-left" style="z-index:4;width:300px;margin-top: 30px;"><br>
+-->
+<nav
+  *ngIf="
+    (currentWindowWidth > 992 && !askMinimized) ||
+    (currentWindowWidth < 992 && showOnSmallScreen)
+  "
+  class="w3-sidebar w3-animate-left mySidebar"
+  [ngClass]="{ 'w3-2018-sailor-blue': isDark, 'w3-white': !isDark }"
+  style="z-index: 3"
+>
+  <br />
+  <div class="w3-container w3-row">
+    <div class="w3-col s4">
+      <img
+        src="{{ avatar }}"
+        class="w3-circle w3-border w3-margin-right"
+        style="width: 46px; max-width: 46px; min-width: 46px; aspect-ratio: 1/1"
+      />
+    </div>
+    <div class="w3-col s8 w3-bar">
+      <span
+        >Welcome, <strong class="fadein">{{ username }}</strong></span
+      ><br />
+      <a
+        [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+        class="w3-bar-item w3-button w3-ripple"
+        (click)="showOnSmallScreen = !showOnSmallScreen"
+        ><i class="fa fa-envelope-o" title="messages"></i
+      ></a>
+      <a
+        [ngClass]="{ 'a-disabled': isLoggedIn() }"
+        [routerLink]="['/login']"
+        class="w3-bar-item w3-button w3-ripple"
+        (click)="showOnSmallScreen = !showOnSmallScreen"
+        ><i class="fa fa-sign-in" title="login"></i
+      ></a>
+      <a
+        [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+        class="w3-bar-item w3-button w3-ripple"
+        (click)="logoutClick()"
+        (click)="showOnSmallScreen = !showOnSmallScreen"
+        ><i class="fa fa-sign-out" title="logout"></i
+      ></a>
+    </div>
+  </div>
+  <hr />
+  <div class="w3-container">
+    <h5>{{ noSlashRoute }}</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a
+      href="#"
+      class="
+        w3-bar-item
+        w3-button
+        w3-padding-16
+        w3-hide-large
+        w3-dark-grey
+        w3-hover-black
+      "
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      title="close menu"
+      ><i class="fa fa-remove fa-fw"></i>&nbsp; Close Menu</a
+    >
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-globe"></i>&nbsp; Home</span
+    >
+    <span
+      [ngClass]="{ 'a-disabled': isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/login']"
+      class="w3-bar-item w3-button w3-padding active-link"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-sign-in"></i>&nbsp; Login</span
+    >
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/dashboard']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-area-chart"></i>&nbsp; Dashboard</span
+    >
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/pandora']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-rocket"></i>&nbsp; Pandora©</span
+    >
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/profile']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-id-badge"></i>&nbsp; Profile</span
+    >
+    <hr class="solid" />
+    <span
+      [ngClass]="{ 'a-disabled': isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/register']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-registered"></i>&nbsp; Register</span
+    >
+    <hr class="solid" />
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/news']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-newspaper-o"></i>&nbsp; News</span
+    >
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/documentation']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-book"></i>&nbsp; Readings</span
+    >
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/livechat']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-commenting-o"></i>&nbsp; X-change</span
+    >
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/settings']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-cog fa-fw"></i>&nbsp; Settings</span
+    >
+    <hr />
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/terms']"
+      class="w3-bar-item w3-button w3-padding"
+      (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-pencil-square-o"></i>&nbsp; Terms & Conditions</span
+    >
+    <hr />
+  </div>
+  <div
+    class="w3-bar-item stick-down"
+    [ngClass]="{
+      'w3-2018-sargasso-sea': isDark,
+      'w3-2018-quiet-gray': !isDark
+    }"
+  >
+    <a
+      *ngIf="currentWindowWidth > 992"
+      class="w3-bar-item w3-button w3-ripple"
+      (click)="minimize()"
+      ><i class="fa fa-chevron-circle-left" title="minimize sidebar"></i
+    ></a>
+    <a class="w3-bar-item w3-button w3-ripple" (click)="changeTheme()"
+      ><i class="fa fa-sun-o" title="toggle dark and light theme"></i
+    ></a>
+    <a class="w3-bar-item w3-button w3-ripple"
+    (click)="showOnSmallScreen = !showOnSmallScreen"
+      ><i class="fa fa-info-circle" title="info"></i
+    ></a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div
+  *ngIf="currentWindowWidth < 992 && showOnSmallScreen"
+  class="myOverlay w3-animate-opacity"
+  (click)="showOnSmallScreen = !showOnSmallScreen"
+  style="cursor: pointer"
+  title="close side menu"
+></div>
+
+<!-- MINIMIZED SIDEBAR FOR BETTER FOCUSING ON DASHBOARD / ONLY AVAILABLE ON SCREENS LESS THAN 992 PIXELS-->
+<nav
+  *ngIf="currentWindowWidth > 992 && askMinimized"
+  class="w3-sidebar w3-animate-left myThinSidebar"
+  [ngClass]="{ 'w3-2018-sailor-blue': isDark, 'w3-white': !isDark }"
+  style="z-index: 3"
+>
+  <br />
+  <div class="w3-bar-block">
+    <img
+      src="{{ avatar }}"
+      class="w3-circle w3-border"
+      style="
+        width: 27px;
+        max-width: 27px;
+        min-width: 27px;
+        aspect-ratio: 1/1;
+        margin-left: 10px;
+      "
+    />
+    <br />
+    <br />
+    <a
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      class="w3-bar-item w3-button w3-ripple"
+      ><i class="fa fa-envelope-o" title="messages"></i
+    ></a>
+    <a
+      [ngClass]="{ 'a-disabled': isLoggedIn() }"
+      [routerLink]="['/login']"
+      class="w3-bar-item w3-button w3-ripple"
+      ><i class="fa fa-sign-in" title="login"></i
+    ></a>
+    <a
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      class="w3-bar-item w3-button w3-ripple"
+      (click)="logoutClick()"
+      ><i class="fa fa-sign-out" title="logout"></i
+    ></a>
+  </div>
+  <hr />
+  <div class="w3-bar-block">
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-globe"></i
+    ></span>
+    <span
+      [ngClass]="{ 'a-disabled': isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/login']"
+      class="w3-bar-item w3-button w3-padding active-link"
+      ><i class="fa fa-sign-in"></i
+    ></span>
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/dashboard']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-area-chart"></i
+    ></span>
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/pandora']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-rocket"></i
+    ></span>
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/profile']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-id-badge"></i
+    ></span>
+    <hr class="solid" />
+    <span
+      [ngClass]="{ 'a-disabled': isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/register']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-registered"></i
+    ></span>
+    <hr class="solid" />
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/news']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-newspaper-o"></i
+    ></span>
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/documentation']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-book"></i
+    ></span>
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/livechat']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-commenting-o"></i
+    ></span>
+    <span
+      [ngClass]="{ 'a-disabled': !isLoggedIn() }"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/settings']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-cog fa-fw"></i
+    ></span>
+    <hr />
+    <span
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['/terms']"
+      class="w3-bar-item w3-button w3-padding"
+      ><i class="fa fa-pencil-square-o"></i
+    ></span>
+    <hr />
+  </div>
+  <a
+    *ngIf="currentWindowWidth > 992 && !askMinimized"
+    class="w3-bar-item w3-button w3-ripple"
+    ><i class="fa fa-chevron-circle-left" title="minimize sidebar"></i
+  ></a>
+  <a
+    *ngIf="askMinimized"
+    class="w3-bar-item w3-button w3-ripple"
+    (click)="maximize()"
+    ><i class="fa fa-chevron-circle-right" title="maximize sidebar"></i
+  ></a>
+  <a class="w3-bar-item w3-button w3-ripple" (click)="changeTheme()"
+    ><i class="fa fa-sun-o" title="toggle dark and light theme"></i
+  ></a>
+  <a class="w3-bar-item w3-button w3-ripple"
+    ><i class="fa fa-info-circle" title="info"></i
+  ></a>
+</nav>

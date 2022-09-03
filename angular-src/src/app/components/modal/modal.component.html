@@ -1,0 +1,26 @@
+<div class="modal-container">
+  <div class="message-container">
+    <div class="w3-bar w3-blue-gray w3-border-bottom">
+      <h4 class="title w3-bar-item"><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp;{{ title }}</h4>
+    </div>
+    <div class="bodyfixer">
+      <p class="body" [innerHTML]="body"></p>
+    </div>
+    <div class="btn-container w3-border-top">
+      <div class="fixer">
+        <button (click)="closeMe()" class="w3-button
+        w3-padding-small
+        w3-ripple
+        w3-round-large
+        w3-left
+        w3-tiny"><i class="fa fa-ban" aria-hidden="true"></i>&nbsp;cancel</button>
+      <button (click)="confirm()" class="w3-button
+      w3-padding-small
+      w3-ripple
+      w3-round-large
+      w3-left
+      w3-tiny"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

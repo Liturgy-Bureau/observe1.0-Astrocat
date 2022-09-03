@@ -1,0 +1,141 @@
+<!-- !DASHBOARD CONTENT! -->
+<h5><i class="fa fa-area-chart"></i> dash</h5>
+<!-- UPPER ROW SECTION-->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="upper-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxFlex.xs = "100%"
+    class="upper-one"
+  ></div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="upper-two"
+  >
+    <div class="w3-card-2 w3-cell-row" style="min-height: 100%">
+      <div class="w3-container w3-cell w3-mobile">
+        <div>
+          <ngx-gauge [value]='gauge1Value' [thresholds]='thresholdConfig' [size]='gaugesize' [thick]='gaugethick'></ngx-gauge>
+          <ngx-gauge [value]='gauge2Value' [thresholds]='thresholdConfig' [size]='gaugesize' [thick]='gaugethick' [label]='gauge2Label'></ngx-gauge>
+          <ngx-gauge [value]='gauge3Value' [thresholds]='thresholdConfig' [size]='gaugesize' [thick]='gaugethick'><ngx-gauge-label>Temp</ngx-gauge-label></ngx-gauge>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="43%"
+    fxFlex.xs="100%"
+    class="upper-three"
+  >
+    <div class="w3-card-2 w3-cell-row" style="min-height: 100%">
+      <div class="w3-container w3-cell w3-mobile">
+
+
+      </div>
+
+    </div>
+  </div>
+  <!---->
+</div> <!-- END UPPER ROW MAIN DIV -->
+<!-- SECOND ROW SECTION -->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="mid-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="mid-one"
+  >
+</div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="mid-two"
+  >
+    <div class="w3-card-2 w3-cell-row">
+      <div class="w3-container w3-cell w3-mobile">
+        <div style='width: 420px; height: 210px'>
+          <ngx-charts-line-chart
+          [fitContainer]='true'
+          [scheme]='colorScheme'
+          [results]="saleData"
+          [xAxisLabel]= 'gauge3Label'
+          [legendTitle]="'Leg.'"
+          [yAxisLabel]="'Sale'"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [gradient]="true">
+          </ngx-charts-line-chart>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxFlex="43%"
+    fxLayoutAlign="center center"
+    fxFlex.xs="100%"
+    class="mid-three"
+  >
+
+  </div>
+  <!---->
+</div><!-- END MID ROW MAIN DIV -->
+<!-- THIRD ROW SECTION -->
+<div fxLayout="row" fxLayoutGap="1%" fxLayout.xs="column" class="low-row">
+  <div
+    fxLayout="column"
+    fxFlex="3%"
+    fxLayoutAlign="center center"
+    fxHide.xs
+    class="low-one"
+  ></div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex="54%"
+    fxFlex.xs="100%"
+    class="low-two"
+  >
+    <div class="w3-card-2 w3-cell-row">
+      <div class="w3-container w3-cell w3-mobile">
+
+
+
+      </div>
+    </div>
+  </div>
+  <!---->
+  <div
+    fxLayout="column"
+    fxFlex="43%"
+    fxLayoutAlign="center center"
+    fxFlex.xs="100%"
+    class="low-three"
+  >
+    <a target="_blank" href="http://litcons.eu"
+      ><img src="../../../assets/pictures/logo-med.png"
+    /></a>
+  </div>
+  <!---->
+</div><!-- END THIRD ROW MAIN DIV -->
+
+

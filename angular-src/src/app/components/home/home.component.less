@@ -1,0 +1,108 @@
+@import "../../../styles.less";
+
+.tomcat {
+  height: 90px;
+}
+
+.upper-row {
+    // background-color: rgba(205, 92, 92, 0.24);
+    height: auto;
+}
+
+.upper-one {
+    // background-color: rgba(76, 0, 130, 0.24);
+    padding: 24px 15px 36px 15px;
+}
+
+// UPPER TWO DIV WITH IT'S CHILDREN DIVS
+.upper-two {
+    // background-color: rgba(130, 0, 113, 0.24);
+    padding: 24px 15px 36px 15px;
+}
+
+.inner-upper-two {
+  width: 100%;
+}
+
+// UPPER THREE DIV WITH IT'S CHILDREN DIVS
+.upper-three {
+    // background-color: rgba(0, 52, 130, 0.24);
+    padding: 24px 15px 36px 15px;
+
+}
+
+.mid-row {
+    margin-top: 1.2%;
+    // background-color: rgba(179, 92, 205, 0.24);
+    height: auto;
+}
+
+.mid-one {
+    // background-color: rgba(24, 0, 130, 0.24);
+    padding: 24px 15px 36px 15px;
+}
+.mid-two {
+    background-color: rgba(130, 0, 0, 0.548);
+    padding: 24px 15px 36px 15px;
+}
+.mid-three {
+    // background-color: rgba(130, 74, 0, 0.24);
+    padding: 24px 15px 36px 15px;
+}
+
+.w3-input {
+    height: 24px;
+    background-color: transparent;
+    color:whitesmoke;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.pass {
+    color: @pass-color;
+    //font-style: italic;
+}
+
+a {
+    text-decoration: none;
+    color: @warn-color;
+}
+
+// INVALID INPUT STYLES WITH FADE ANIMATION
+.invalid {
+    color: @false-color;
+    animation: fadeIn ease .3s;
+    -webkit-animation: fadeIn ease .3s;
+
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+    @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+// INVALID INPUT STYLES - END
